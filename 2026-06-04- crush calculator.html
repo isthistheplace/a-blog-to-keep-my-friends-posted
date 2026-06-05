@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ① Change to your post title -->
+  <title>on the crush calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ]
+  })">
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       MASTHEAD — leave unchanged for every post
+       ════════════════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <nav class="masthead-nav">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </nav>
+      <a class="masthead-logo" href="index.html">a blog to keep my friends posted</a>
+      <div class="masthead-right"></div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       BREADCRUMB
+       ② Change "POST TITLE" to match your h1
+       ════════════════════════════════════════════ -->
+  <div class="breadcrumb">
+    <a href="index.html">Posts</a>
+    <span>/</span>
+    On the Crush Calculator
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ARTICLE
+       ════════════════════════════════════════════ -->
+  <article>
+    <header class="post-header">
+      <div class="post-meta">
+        <!-- ③ Date — written out, e.g. "June 10, 2026" -->
+        <span class="post-date">June 4, 2026</span>
+        <!-- ④ Category tag — one word, lowercase, e.g. gossip / travel / misc -->
+        <span class="tag">Unnecessary Thoughts</span>
+      </div>
+      <!-- ⑤ Post title -->
+      <h1 class="post-title">On the Crush Calculator, Utilitarianism, and Self-Legitimation</h1>
+    </header>
+    
+    <p>
+      I've been thinking recently—never a good sign—about the <a href="https://wmk2114.github.io/Crush-Calculator/"; style = "color: #2a4a3e">crush calculator</a>,
+      which Oscar and I built during the semester and which Claude converted into being a website. I've been more broadly disillusioned with utilitarianism recently, so
+      I decided to write about it because I have nothing better to do while I wait to hear back from Morning Consult.<a href="#fn1" class="fn-ref" id="fnref1">1</a>
+    </p>
+
+    <!-- ════════════════════════════════════════════
+         POST BODY
+         Everything below is a live demo of every
+         available element. Delete what you don't
+         need and write over the example content.
+         ════════════════════════════════════════════ -->
+    <div class="post-body">
+
+      <!-- ─── PARAGRAPHS ───────────────────────────
+           Plain <p> tags. The stylesheet handles
+           font, size (21px), line-height, and the
+           gap between paragraphs automatically.
+           ─────────────────────────────────────────── -->
+      <h2>The Utility Function</h2>
+      <p>
+        As a recap, the function the calculator uses is simple:
+        $$E\{AskingCrushOut|B, C, p\}=Bp-C(1-p)$$
+        
+        </p>
+      
+      
+      <p>
+        Where $E\{...\}$ is the expected value of asking someone out, $B$ represents the potential benefits of doing, 
+        $C$ the potential costs, and $p$ the probability that the crush is reciprocal. 
+        This function is useful for its simplicity. With few parameters, it’s easy to 
+        specify prior distributions for each, which you can then use to run a bunch of Monte Carlo simulations to get estimates of the posterior distributions
+        of the expected value. 
+        That said, the simplicity of the function masks the conceptual difficulty of quantifying the potential outcomes of asking someone out.
+        How is someone meant to account for 
+        the benefits of a fruitful romantic relationship or the costs of a friendship that 
+        sours after asking someone out? To those who argue that reconciling love with a literal 
+        hedonic calculus is absurd, I agree. Human interaction is too elaborate, irrational, 
+        and moving for a utility function to capture, but in an effort to make my friends 
+        laugh—as well as to potentially convince them to make a move—I happily played the part of hapless utilitarian.
+      </p>
+      
+      <p>
+        In this role, I asked Oscar the following question: 
+        If you knew that your crush liked you, how much would I have to pay you not to ask them out?  
+        This formulation collapses the number of complicating factors that you would otherwise face in 
+        putting a number to the benefits of asking someone out. 
+        The range of social possibilities that emerge from a romantic (platonic, or familial) relationship is 
+        unfathomable and overwhelming in its scope, and it’d be impossible to assign probabilities to each as 
+        microeconomics’ perfect utility maximizer would.<a href="#fn2" class="fn-ref" id="fnref2">2</a> 
+        How much money you’d need in order not to do something, 
+        however, is so tangible that it’s intuitive.<a href="#fn3" class="fn-ref" id="fnref3">3</a>
+      </p>
+      
+      <p>
+        Having said that, this operationalization is meaningfully flawed because it is framed 
+        in starkly egoistic terms, which is especially problematic in the case of evaluating costs: 
+        If you knew that person X does not like you romantically, how much would I have to pay you to ask them out? 
+      </p>
+      
+      <p>
+        What if asking someone else out causes them to be uncomfortable, especially in the event that you had already 
+        been rejected? 
+        My blithe hope is that people can adequately internalize the harm that they may 
+        cause others—whether through shame, guilt, embarrassment, or another salient affect—and embed 
+        that harm into the utility function that I proposed above, but I recognize that this assumption is too strong
+        to be plausible in all or most cases.<a href="#fn4" class="fn-ref" id="fnref4">4</a> The unlikelihood of this 
+        underlying hope prompts me to consider the ethics of the crush calculator.
+      </p>
+      
+      <h2>The Ethics of the Crush Calculator</h2>
+      
+      <p>
+        For the sake of discussion, let's make another unbelievable assumption, that the crush calculator were to be used
+        beyond our narrow group of friends. Most users (I figure) would use it for the joke that it is:
+      </p>
+      
+      <blockquote>
+        Ha-ha funny, like a modern day Zoltar.
+      </blockquote>
+      
+      <p>
+        To the point that the Crush Calculator could be used both seriously and well, I imagine that it could be lightly informative. 
+        It would motivate people to think differently about the stakes of asking someone out and realize that it's not that deep (at least, in most cases).
+        Alternatively, it could prompt someone to be curious about another person in the name of updating their priors. 
+        In either case, the calculator acts as a way of systematizing people's thought process behind asking someone out.
+      </p>
+      
+      <p>
+        But it'd be so easy to use the crush calculator poorly.
+      </p>
+      
+      <p>
+        As I see it, the most problematic outcome would be that someone uses it for self-legitimation. Because anyone can specify their priors in 
+        any manner that they'd like, people can create outlandish scenarios that give meaningless authority to their Quixotic romanticism.
+        People will see what they look for, and then act off what they find, potentially leading to discomfort 
+        for others implicated.
+      </p>
+      
+      <p>
+        The problem of self-legitimation is more widely embedded in utilitarianism, beyond the crush calculator, but people have found ways to attenuate it by creating processes through which
+        priors are specified
+        inter-subjectively. In philanthropy, you
+        can identify the benefits of a policy intervention through 
+        easily measurable outcomes that are not obviously tied to anyone's subjective experience—mortality rates, disease incidence, etc.—and optimize on those outcomes.
+        Economics has then provided us with an epistemology, enabling for consensus to be constituted.<a href="#fn5" class="fn-ref" id="fnref5">5</a>
+      </p>
+      
+      <p>
+        In the case of the crush calculator, there is neither an epistemology nor any easily measurable outcomes to inform decision making.
+        How are we to evaluate the success of a relationship that exists, much less one that may never? Without a coherent process of assigning priors,
+        how are we meant to inoculate ourselves against self-legitimation and stop ourselves from letting utilitarianism confer our decision making with 
+        the meaningless impression of morality?
+      </p>
+      
+      <p>
+        In all sincerity (and as you might suspect at this point), my concern in this respect is not actually motivated by the crush calculator, but in fact,
+        by nuclear weapons. I've been working on this post for far too long, however, to elaborate on nukes.
+      </p>
+      
+      <h2>Life Updates</h2>
+      <p>
+        See footnote one for the update on my job status.
+      </p>
+      
+       <p>
+        Going to go camping with Lucia this weekend in Connecticut. I'm looking forward to it! It will likely rain, but I have some fun stuff planned nonetheless.
+      </p>
+      
+      <p>
+        Two days ago, I hung out with Jason and Perseus (high school friends),
+      and we went swimming in a local river and then got Diner food. Jason and I split a five stack of banana chocolate chip pancakes and a dish of french toast with fruit and whipped cream. Plates clean in less than ten minutes.
+      </p>
+      
+      <figure class="post-photo">
+        <img src="imgs/IMG_0951.jpg" alt="Jason, Perseus, + Me" />
+        <figcaption>Jason, Perseus, + Me</figcaption>
+      </figure>
+      
+      <figure class="post-photo">
+        <img src="imgs/PANA1291.jpg" alt="Perseus went snorkling for crayfish" />
+        <figcaption>Perseus went snorkeling for crayfish</figcaption>
+      </figure>
+      
+        <!-- Footnotes — always at the very bottom of .post-body -->
+  <aside class="footnotes">
+    <ol>
+      <li id="fn1">
+        If you're interested in that update, I had two interviews last week, the first of which I think went well and the second
+        of which...like...also went well but eh, not the best interview I've given. I am slated to hear back early next week. Would move to DC for that job!
+        <a href="#fnref1" class="fn-back">↩</a>
+      </li>
+      <li id="fn2">
+        Here’s a fun case where JM Keynes’ Treatise on Probability is particularly apt. If there were a case where radical uncertainty applies, love would likely be it.
+        <a href="#fnref2" class="fn-back">↩</a>
+      </li>
+      <li id="fn3">
+        Theoretically, too, your estimate of how much you would need to be paid not to 
+        ask someone out encompasses your future expectation of how likely it is that a 
+        relationship would develop, how meaningful that relationship would be, and the 
+        previously discussed range of possibilities. That said, I’d recommend not thinking about 
+        this point too hard or else you’ll be back to square one, trying to estimate the universe of futures-to-be-realized. 
+        <a href="#fnref3" class="fn-back">↩</a>
+      </li>
+      <li id="fn4">
+        Likewise, my hope would be that people would not overstate in 
+        their heads the potential benefits that asking someone out would confer to that person.
+        That is to say, no one should be so confident
+        that they can enamor another person so much that the expected benefits curve is pushed to an absurdly high level.
+        <a href="#fnref4" class="fn-back">↩</a>
+      </li>
+            <li id="fn5">
+        It is important to note, of course, that academic consensus is still socially constituted.
+        GiveWell spends tens of millions of dollars trying to maximize the marginal utility of charitable spending through
+        scientific and quasi-scientific test, but they will never be able to definitively say what the best way to
+        spend your money is because economics has its own epistemic limits. As a result, any consensus that emerges
+        from academic research is simply that: an inter-subjective understanding that is susceptible to challenge with new research
+        and the invention of new methodological approaches. It is not "objective," and upon the arrival of new, challenging research,
+        consensus falters and then who is to say what the best way to spend your money is?
+        <a href="#fnref5" class="fn-back">↩</a>
+      </li>
+    </ol>
+  </aside>
+      
+      </div>
+
+ 
+  </article>
+
+  <!-- ════════════════════════════════════════════
+       POST NAV
+       "← All posts" always stays.
+       Uncomment the right arrow when a newer
+       post exists and fill in its filename.
+       ════════════════════════════════════════════ -->
+  <div class="post-nav">
+    <a href="/index.html">← All posts</a>
+    <!--
+    <a href="/posts/NEXT-POST-SLUG.html">Next post →</a>
+    -->
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER — leave unchanged
+       ════════════════════════════════════════════ -->
+  <footer>
+    <p class="footer-logo">a blog to keep my friends posted</p>
+    <p>&copy; 2025 Wyatt King</p>
+  </footer>
+
+</body>
+</html>

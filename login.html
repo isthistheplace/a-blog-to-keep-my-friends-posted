@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Field Notes — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, 'SF Pro Text', sans-serif;
+      --ink: #1c1b19;
+      --ink-soft: #6b6860;
+      --ink-faint: #b8b5ae;
+      --paper: #fafaf8;
+      --rule: #e4e1da;
+      --accent: #2a4a3e;
+    }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 360px;
+      padding: 0 32px;
+      text-align: center;
+    }
+    .login-logo {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .login-sub {
+      font-size: 13px;
+      color: var(--ink-faint);
+      margin-bottom: 40px;
+      letter-spacing: .02em;
+    }
+    .input-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 11px 44px 11px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      background: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s;
+    }
+    input[type="password"]:focus { border-color: var(--accent); }
+    input[type="password"]::placeholder { color: var(--ink-faint); }
+    .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-faint);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      transition: color .15s;
+    }
+    .toggle-pw:hover { color: var(--ink-soft); }
+    .login-btn {
+      width: 100%;
+      padding: 11px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .login-btn:hover { opacity: .88; }
+    .login-btn:active { opacity: .75; }
+    .error-msg {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #b04040;
+      min-height: 18px;
+      letter-spacing: .02em;
+    }
+    footer {
+      position: fixed;
+      bottom: 24px;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <p class="login-logo">a blog to keep my friends posted</p>
+    <p class="login-sub">Enter the password to continue</p>
+
+    <div class="input-wrap">
+      <input type="password" id="pw" placeholder="Password" autocomplete="current-password" />
+      <button class="toggle-pw" id="togglePw" aria-label="Show password" type="button">
+        <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+
+    <button class="login-btn" id="loginBtn">Enter</button>
+    <p class="error-msg" id="errorMsg" aria-live="polite"></p>
+  </div>
+
+  <footer>&copy; 2025 Wyatt King</footer>
+
+  <script>
+    // ── Change this to your chosen password ──
+    const PASSWORD = '20OscarIsHotStuff!26';
+
+    const input    = document.getElementById('pw');
+    const btn      = document.getElementById('loginBtn');
+    const error    = document.getElementById('errorMsg');
+    const toggle   = document.getElementById('togglePw');
+    const eyeIcon  = document.getElementById('eyeIcon');
+
+    const EYE_OPEN = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+    const EYE_SHUT = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+
+    toggle.addEventListener('click', () => {
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      eyeIcon.innerHTML = isText ? EYE_OPEN : EYE_SHUT;
+      toggle.setAttribute('aria-label', isText ? 'Show password' : 'Hide password');
+    });
+
+    function attempt() {
+      if (input.value === PASSWORD) {
+        sessionStorage.setItem('fn_auth', '1');
+        window.location.href = 'index.html';
+      } else {
+        error.textContent = 'Incorrect password — try again.';
+        input.value = '';
+        input.focus();
+        setTimeout(() => { error.textContent = ''; }, 3000);
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+
+    // If already authenticated, skip straight to blog
+    if (sessionStorage.getItem('fn_auth') === '1') {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

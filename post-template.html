@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ① Change to your post title -->
+  <title>POST TITLE — Field Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ]
+  })">
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       MASTHEAD — leave unchanged for every post
+       ════════════════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <nav class="masthead-nav">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </nav>
+      <a class="masthead-logo" href="index.html">a blog to keep my friends posted</a>
+      <div class="masthead-right"></div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       BREADCRUMB
+       ② Change "POST TITLE" to match your h1
+       ════════════════════════════════════════════ -->
+  <div class="breadcrumb">
+    <a href="/index.html">Posts</a>
+    <span>/</span>
+    POST TITLE
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ARTICLE
+       ════════════════════════════════════════════ -->
+  <article>
+    <header class="post-header">
+      <div class="post-meta">
+        <!-- ③ Date — written out, e.g. "June 10, 2026" -->
+        <span class="post-date">Month DD, YYYY</span>
+        <!-- ④ Category tag — one word, lowercase, e.g. gossip / travel / misc -->
+        <span class="tag">category</span>
+      </div>
+      <!-- ⑤ Post title -->
+      <h1 class="post-title">POST TITLE</h1>
+    </header>
+
+    <!-- ════════════════════════════════════════════
+         POST BODY
+         Everything below is a live demo of every
+         available element. Delete what you don't
+         need and write over the example content.
+         ════════════════════════════════════════════ -->
+    <div class="post-body">
+
+      <!-- ─── PARAGRAPHS ───────────────────────────
+           Plain <p> tags. The stylesheet handles
+           font, size (21px), line-height, and the
+           gap between paragraphs automatically.
+           ─────────────────────────────────────────── -->
+      <p>The Gaussian integral shows up everywhere in probability:</p>
+$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+
+      <p>
+        Overall my reaction was: how pleasant! Lucia is very sweet and thoughtful, though not sure
+        what the outlook is for the future. It's not something I'm worrying about though — I think
+        I've learned to take the future as it comes.
+      </p>
+
+
+      <!-- ─── SECTION HEADING (h2) ─────────────────
+           Use <h2> to break a longer post into
+           named sections. Styled in serif, slightly
+           larger than body, with breathing room above.
+           ─────────────────────────────────────────── -->
+      <h2>The Mets game</h2>
+
+      <p>
+        Went with my dad. Juan Soto hit a grand slam in the sixth — the kind of moment where
+        everyone in the stadium stands up before the ball even lands.
+      </p>
+
+
+      <!-- ─── INLINE PHOTO ──────────────────────────
+           Use <figure class="post-photo"> anywhere in
+           the body to drop in a photo at full column
+           width. <figcaption> is optional — delete
+           the line entirely if you don't want one.
+
+           src:  absolute path from repo root
+           alt:  brief description (good practice)
+           ─────────────────────────────────────────── -->
+      <figure class="post-photo">
+        <img src="/imgs/IMG_0928.jpeg" alt="Juan Soto hits a grand slam at Citi Field" />
+        <figcaption>Citi Field, May 31 — the grand slam.</figcaption>
+      </figure>
+
+
+      <!-- ─── BLOCKQUOTE ────────────────────────────
+           Use <blockquote> for a quoted passage,
+           a text message, something someone said,
+           or anything you want set apart visually.
+           Renders with a left rule, italic, and
+           slightly muted color.
+           ─────────────────────────────────────────── -->
+      <blockquote>
+        "I would go Conrad! Conrad! Conrad!"
+      </blockquote>
+
+      <p>
+        She got excited and thought that was cute. Encouraging signs, I think.
+      </p>
+
+
+      <!-- ─── INLINE LINK ───────────────────────────
+           Regular <a> tags inside .post-body get
+           the accent color and a subtle underline
+           that darkens on hover. Use freely.
+           ─────────────────────────────────────────── -->
+      <p>
+        If you want to read more about the pinball museum we went to,
+        <a href="https://example.com"; style = "color: #2a4a3e">here's their site</a>. Highly recommend.
+      </p>
+
+
+      <!-- ─── HORIZONTAL RULE ───────────────────────
+           Use <hr> to signal a scene break or a
+           shift in topic — renders as a thin ruled
+           line with generous space above and below.
+           ─────────────────────────────────────────── -->
+      <hr />
+
+      <p>
+        Also had dinner with Nicole and Joshua. Good to see them both. We stayed until the
+        restaurant started stacking chairs.
+      </p>
+
+      <!-- You can chain as many photos, paragraphs,
+           blockquotes, h2s, and hrs as you like.
+           Just keep them inside .post-body.        -->
+
+    </div>
+  </article>
+
+  <!-- ════════════════════════════════════════════
+       POST NAV
+       "← All posts" always stays.
+       Uncomment the right arrow when a newer
+       post exists and fill in its filename.
+       ════════════════════════════════════════════ -->
+  <div class="post-nav">
+    <a href="/index.html">← All posts</a>
+    <!--
+    <a href="/posts/NEXT-POST-SLUG.html">Next post →</a>
+    -->
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER — leave unchanged
+       ════════════════════════════════════════════ -->
+  <footer>
+    <p class="footer-logo">a blog to keep my friends posted</p>
+    <p>&copy; 2025 Wyatt King</p>
+  </footer>
+
+</body>
+</html>

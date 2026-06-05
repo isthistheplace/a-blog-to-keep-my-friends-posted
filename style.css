@@ -1,0 +1,423 @@
+/* ============================================================
+   Field Notes — Shared Stylesheet
+   ============================================================
+   Import this file in every page:
+   <link rel="stylesheet" href="/style.css" />
+   ============================================================ */
+
+/* ── Reset & Box Model ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design Tokens ── */
+:root {
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', -apple-system, 'SF Pro Text', sans-serif;
+
+  --ink:        #1c1b19;
+  --ink-soft:   #6b6860;
+  --ink-faint:  #b8b5ae;
+  --paper:      #fafaf8;
+  --rule:       #e4e1da;
+  --accent:     #2a4a3e;
+
+  --max-width:  680px;
+  --radius:     8px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ============================================================
+   MASTHEAD (shared across all pages)
+   ============================================================ */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: 0 40px;
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.masthead-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 56px;
+}
+.masthead-nav { display: flex; gap: 24px; }
+.masthead-nav a,
+.masthead-right a {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .15s;
+}
+.masthead-nav a:hover,
+.masthead-right a:hover { color: var(--ink); }
+.masthead-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  text-align: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead-right { display: flex; justify-content: flex-end; align-items: center; }
+
+
+/* ============================================================
+   SEARCH (index.html only, but defined here for convenience)
+   ============================================================ */
+.search-wrap { position: relative; }
+.search-input {
+  width: 0; padding: 0;
+  border: none; border-bottom: 1px solid transparent;
+  background: transparent;
+  font-family: var(--sans); font-size: 12px; color: var(--ink);
+  outline: none;
+  transition: width .25s ease, padding .25s ease, border-color .25s ease;
+  vertical-align: middle;
+}
+.search-input::placeholder { color: var(--ink-faint); }
+.search-input.open { width: 160px; padding: 2px 24px 2px 0; border-bottom-color: var(--rule); }
+.search-input.open:focus { border-bottom-color: var(--ink-soft); }
+.search-btn {
+  background: none; border: none; cursor: pointer;
+  padding: 0 0 0 10px; color: var(--ink-soft);
+  display: flex; align-items: center; transition: color .15s;
+}
+.search-btn:hover { color: var(--ink); }
+.search-clear {
+  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-faint); font-size: 14px; line-height: 1; padding: 0; display: none;
+}
+.search-clear.visible { display: block; }
+
+
+/* ============================================================
+   SHARED COLUMN / PAGE WRAPPER
+   ============================================================ */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+
+/* ============================================================
+   HERO IMAGE  (index.html)
+   ============================================================ */
+.hero {
+  max-width: var(--max-width);
+  margin: 36px auto 0;
+  padding: 0 40px;
+}
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+
+/* ============================================================
+   POST LIST  (index.html)
+   ============================================================ */
+.post-list { margin-top: 36px; padding-bottom: 60px; }
+
+.post-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+.post-row:first-child { border-top: 1px solid var(--rule); }
+.post-row.hidden { display: none; }
+.post-row-left { flex: 1; min-width: 0; }
+.post-kicker {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.post-row-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+  transition: color .15s;
+}
+.post-row:hover .post-row-title { color: var(--accent); }
+.post-row-excerpt { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
+.post-row-meta { font-size: 11px; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; text-align: right; }
+.post-row-meta span { display: block; line-height: 1.7; }
+
+.no-results {
+  display: none;
+  padding: 48px 0;
+  font-size: 14px;
+  color: var(--ink-faint);
+  text-align: center;
+  border-top: 1px solid var(--rule);
+}
+
+
+/* ============================================================
+   INLINE PHOTO  (usable on both index and post pages)
+   Drop a <figure class="post-photo"> anywhere to insert a photo.
+   ============================================================ */
+.post-photo { padding: 28px 0; border-bottom: 1px solid var(--rule); }
+.post-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: none;
+}
+.post-photo figcaption {
+  margin-top: 9px;
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+
+/* ============================================================
+   POST PAGE  (post.html and all individual posts)
+   ============================================================ */
+
+/* Breadcrumb */
+.breadcrumb {
+  font-family: var(--serif);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 6px; }
+
+
+/* Article wrapper */
+article {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 28px 24px 80px;
+}
+
+/* Post header */
+.post-header { 
+  margin-bottom: 32px; 
+  
+}
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.post-date {
+  font-family: var(--serif);
+  font-size: 13px;
+      color: var(--color-muted);}
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: #e8f0e9;
+  border-radius: 20px;
+  padding: 1px 9px;
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+h1.post-title {
+  font-family: var(--serif);
+  font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--color-text);
+}
+
+/* Post subtitle
+   Usage: place immediately after <h1 class="post-title">
+   <p class="post-subtitle">Your subtitle here</p>
+*/
+.post-subtitle {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+/* Post body */
+.post-body { font-size: 16px; }
+
+    .post-body p { margin-bottom: 20px; }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    .post-body h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 36px 0 12px;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--color-border);
+      margin: 24px 0;
+      padding: 4px 0 4px 20px;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    .post-body a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-decoration-color: #84b8ee;
+      text-underline-offset: 2px;
+    }
+    .post-body a:hover { text-decoration-color: var(--color-accent); }
+
+    .post-body hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 40px 0;
+    }
+
+/* Post nav (prev / next) */
+.post-nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--rule);
+}
+.post-nav a {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.post-nav a:hover { text-decoration: underline; }
+
+
+/* ============================================================
+   SEARCH HIGHLIGHT  (shared)
+   ============================================================ */
+mark {
+  background: #e8f0e9;
+  color: var(--accent);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-style: normal;
+}
+
+/* ============================================================
+   FOOTNOTES
+   ============================================================
+   USAGE:
+ 
+   1. In your text, place the superscript reference:
+      <a href="#fn1" class="fn-ref" id="fnref1">1</a>
+ 
+   2. At the bottom of .post-body, add the footnote list:
+      <aside class="footnotes">
+        <ol>
+          <li id="fn1">
+            The footnote text goes here.
+            <a href="#fnref1" class="fn-back">↩</a>
+          </li>
+        </ol>
+      </aside>
+ 
+   The ↩ link jumps the reader back to where they were in the text.
+   Repeat the pattern for as many footnotes as you need,
+   incrementing the numbers: fn1/fnref1, fn2/fnref2, etc.
+   ============================================================ */
+ 
+/* Superscript reference number in the body text */
+.fn-ref {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-style: normal;
+  vertical-align: super;
+  line-height: 0;             /* prevents the superscript from expanding line-height */
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: 1px;
+}
+.fn-ref:hover { text-decoration: underline; }
+ 
+/* Footnote section container */
+.footnotes {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+ 
+/* Ordered list inside the footnote block */
+.footnotes ol {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
+}
+ 
+/* Each footnote item */
+.footnotes li {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.footnotes li:last-child { margin-bottom: 0; }
+ 
+/* The ↩ back-link */
+.fn-back {
+  font-size: 12px;
+  color: var(--ink-faint);
+  text-decoration: none;
+  margin-left: 5px;
+}
+.fn-back:hover { color: var(--accent); }
+ 
+
+/* ============================================================
+   FOOTER  (shared)
+   ============================================================ */
+footer { padding: 40px; text-align: center; }
+.footer-logo { font-family: var(--serif); font-size: 20px; color: var(--ink-faint); margin-bottom: 12px; }
+footer p { font-size: 11px; letter-spacing: .06em; color: var(--ink-faint); }
