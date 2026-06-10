@@ -416,6 +416,145 @@ mark {
  
 
 /* ============================================================
+   COMMENTS  (Giscus embed)
+   ============================================================ */
+.comments-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 24px 60px;
+  border-top: 1px solid var(--rule);
+}
+
+.updates-cta {
+  max-width: var(--max-width);
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+.updates-cta-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 14px 32px rgba(28, 27, 25, 0.06);
+}
+
+.updates-cta-copy {
+  max-width: 520px;
+}
+
+.updates-cta-label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.updates-cta-card h2 {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.updates-cta-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.updates-cta-action {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 240px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 14px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: #223c32;
+}
+
+.btn-secondary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.btn-secondary:hover {
+  background: #f5f2ed;
+}
+
+.updates-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.updates-form input {
+  flex: 1 1 220px;
+  min-width: 220px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.updates-success {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .updates-cta-card {
+    flex-direction: column;
+  }
+  .updates-form {
+    flex-direction: column;
+  }
+}
+
+/* ============================================================
    FOOTER  (shared)
    ============================================================ */
 footer { padding: 40px; text-align: center; }
