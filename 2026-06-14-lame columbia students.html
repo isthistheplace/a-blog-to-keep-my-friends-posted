@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ① Change to your post title -->
+  <title>Yet more evidence Columbia students are lame</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$',  right: '$',  display: false }
+    ]
+  })">
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       MASTHEAD — leave unchanged for every post
+       ════════════════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <nav class="masthead-nav">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </nav>
+      <a class="masthead-logo" href="index.html">a blog to keep my friends posted</a>
+      <div class="masthead-right"></div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       BREADCRUMB
+       ② Change "POST TITLE" to match your h1
+       ════════════════════════════════════════════ -->
+  <div class="breadcrumb">
+    <a href="/index.html">Posts</a>
+    <span>/</span>
+    Yet more evidence Columbia students are lame
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ARTICLE
+       ════════════════════════════════════════════ -->
+  <article>
+    <header class="post-header">
+      <div class="post-meta">
+        <!-- ③ Date — written out, e.g. "June 10, 2026" -->
+        <span class="post-date">June 14, 2026</span>
+        <!-- ④ Category tag — one word, lowercase, e.g. gossip / travel / misc -->
+        <span class="tag">Data, data, data!</span>
+      </div>
+      <!-- ⑤ Post title -->
+      <h1 class="post-title">Yet more evidence Columbia students are lame</h1>
+      <h1 class="post-subtitle">In which I resort to subways and shoddy statistics</h1>
+    </header>
+
+    <!-- ════════════════════════════════════════════
+         POST BODY
+         Everything below is a live demo of every
+         available element. Delete what you don't
+         need and write over the example content.
+         ════════════════════════════════════════════ -->
+    <div class="post-body">
+
+      <figure class="post-photo">
+        <img src="imgs/P1019119.JPG" alt="Subway" />
+        <figcaption>Subway station during snow storm</figcaption>
+      </figure>
+
+      <!-- ─── PARAGRAPHS ───────────────────────────
+           Plain <p> tags. The stylesheet handles
+           font, size (21px), line-height, and the
+           gap between paragraphs automatically.
+           ─────────────────────────────────────────── -->
+      <h2>Subways and Shoddy Statistics</h2>
+      <p>It was only a matter of time before this blog became a data blog.
+        Who am I to resist fate?
+      </p>
+
+      <p>
+        This weekend, I was casually going through NY Open Data 
+        (as I often do when I'm bored), and I came across a cool dataset.
+        This dataset estimates how frequently people travel from certain subway stations to others,
+        averaged by the hour of the day and month. So, I decided to try to figure out where
+        Columbia students go. Of course, I don't want to overstate. I can't definitively say where Columbia students
+        go, but I can estimate in where subway riders who pick up the 1 from 116th are going.
+        Take the title of this post as teasing clickbait, then. I don't mean to imply I can draw any definitive conclusions about 
+        Columbia students, but I at least try to manipulate my data to show that they are lame.
+      </p>
+
+      <p>
+        Ultimately, the best evidence I come up with is, in fact, the existence of this blog
+        post itself.
+      </p>
+
+      <h2>The Weekends + Friday</h2>
+      <p>
+        First, let's start with the basics of how I manipulated these data. These data are from 2025, 
+        and I subset them to only include months from during the academic year. First, I consider where people who take the train from 116th
+        go on the weekends and Friday.  
+      </p>
+
+      <figure class="post-photo">
+      <iframe
+        src="dataviz/columbia_116_weekend_destinations.html"
+        style="width:100%; height:600px; border:0;"
+        title="Friday vs. Thursday: Where Columbia Riders Go">
+      </iframe>
+      <figcaption>Interactive map of Columbia riders from 116 St-Columbia University.</figcaption>
+    </figure>
+
+    <p>
+      <br> Perhaps, unsurprisingly large transit hubs that the one stops at are the biggest destinations people
+      go to. Things really tail off after Penn Station, though. Do people really spend that much time in the Upper West Side?
+    </p>
+
+      <h2>Trying to Focus on Columbia Students</h2>
+      <p>
+        Of course, the problem with doing the above is that they say nothing about Columbia students
+        themselves. There are many people who take the one to and from 116th who aren't students—Mount Sinai employees, Morningside Heights residents, service workers, etc. So, in addition to just looking at where
+        people go over the weekend, I also consider how traffic patterns differ between Thursday and Friday.
+      </p>
+
+      <p>
+        The intution for why I do so is this: with classes off, Columbia students are footloose and free to go wherever they would like.
+        That said, people who work still have to turn up, meaning that traffic patterns for everyone aside from Columbia students
+        should be similar between the two days. The resulting difference between traffic patterns on Thursday and Friday may then be a good indication
+        of where Columbia students, specifically, are going. To be sure, the assumption that I'm making about non-students' traffic patterns is strong. 
+        One problem with it is that people work from home more often on Fridays than Thursdays meaning that the change in hybrid workers' traveling habits will be reflected here.
+        While I can obsess about issues like these, I can also just create map. See below.
+      </p>
+      
+    <figure class="post-photo">
+      <iframe
+        src="dataviz/columbia_116_destinations_map.html"
+        style="width:100%; height:600px; border:0;"
+        title="Friday vs. Thursday: Where Columbia Riders Go">
+      </iframe>
+      <figcaption>Interactive map of Columbia riders from 116 St-Columbia University.</figcaption>
+    </figure>
+
+    <p>
+      <br>There are only two areas, so far as I can tell, that show a consistent increase in the number of people visiting them on Friday comapred to Thursday.
+      One is lower Manhattan north of Canal and below 14th street, and the other is Rockaway. 
+      Other notable locations showing an increase in the number of people going them include
+      Inwood, Mets-Willets Point (not Yankees' stadium), and the aquarium. If you spot anything else, let me know.
+      </p>
+
+      <p>
+      I'm not sure what to make of the significant decline in people going to Penn Station, 42nd street, and 96th. 
+      Maybe it's people working from home? Maybe it's some artifact of the MTA's estimation methods? If you have any ideas, drop them
+      in the comments.
+    </p>
+
+
+      <!-- ─── SECTION HEADING (h2) ─────────────────
+           Use <h2> to break a longer post into
+           named sections. Styled in serif, slightly
+           larger than body, with breathing room above.
+           ─────────────────────────────────────────── -->
+      <h2>Why is this lame?</h2>
+
+      <p>
+        I mean, it's just what you'd expect.
+      </p>
+
+      <h2>Are there any life updates?</h2>
+      <p>
+        No, not really.
+      </p>
+
+      <p>
+        Still waiting to hear back from that job. Should hear back over the next couple days (for real this time).
+      </p>
+
+      <p>
+        Heading to the City probably on Tuesday to visit Lucia.
+      </p>
+
+       <p>
+        Bored at home. May write a limerick about it.
+      </p>
+ 
+
+    </div>
+  </article>
+
+  <!-- ════════════════════════════════════════════
+       POST NAV
+       "← All posts" always stays.
+       Uncomment the right arrow when a newer
+       post exists and fill in its filename.
+       ════════════════════════════════════════════ -->
+  <div class="post-nav">
+    <a href="index.html">← All posts</a>
+    <!--
+    <a href="/posts/NEXT-POST-SLUG.html">Next post →</a>
+    -->
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       COMMENTS (Giscus)
+
+       HOW TO SET UP:
+       1. Go to https://giscus.app
+       2. Enter your GitHub repo name (must be public)
+       3. Enable Discussions on the repo (Settings → Features → Discussions)
+       4. Install the Giscus GitHub App on the repo
+       5. Giscus will generate a <script> tag — copy these values
+          from that generated tag into the script below:
+            data-repo         → "username/repo-name"
+            data-repo-id      → the ID Giscus generates
+            data-category     → the Discussion category (e.g. "Comments")
+            data-category-id  → the category ID Giscus generates
+       6. Paste this block into every post HTML file.
+          Each post automatically gets its own discussion thread.
+       ════════════════════════════════════════════ -->
+  <div class="comments-wrap">
+<script src="https://giscus.app/client.js"
+        data-repo="isthistheplace/a-blog-to-keep-my-friends-posted"
+        data-repo-id="R_kgDOSyWA9Q"
+        data-category="Comments"
+        data-category-id="DIC_kwDOSyWA9c4C-3jo"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER — leave unchanged
+       ════════════════════════════════════════════ -->
+  <footer>
+    &copy; 2026 Wyatt King &mdash; built with plain HTML (and Claude)
+  </footer>
+
+</body>
+</html>

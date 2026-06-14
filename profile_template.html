@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Friend's Name] — a blog to keep my friends posted</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<script>
+  if (sessionStorage.getItem('fn_auth') !== '1') {
+    window.location.replace('login.html');
+  }
+</script>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <nav class="masthead-nav">
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+    </nav>
+    <a class="masthead-logo" href="index.html">a blog to keep my friends posted</a>
+    <div class="masthead-right"></div>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  Friends
+  <span>›</span>
+  [Friend's Name]
+</div>
+
+<div class="profile-wrap">
+
+  <!-- ══════════════════════════════════════════════
+       LEFT COLUMN — choose ONE of the two options below
+       ══════════════════════════════════════════════ -->
+
+  <div class="profile-media">
+
+    <!-- OPTION A: Single photo -->
+    <img class="profile-photo"
+         src="imgs/PANA0745.JPG"
+         alt="[Friend's Name]" />
+
+    <!-- OPTION B: Photo collage
+         Delete the <img> above and uncomment this block.
+         The first image will be featured (wider); the rest tile in a 2-col grid.
+    <div class="profile-collage">
+      <img src="imgs/photo1.jpg" alt="[Friend's Name]" />
+      <img src="imgs/photo2.jpg" alt="" />
+      <img src="imgs/photo3.jpg" alt="" />
+      <img src="imgs/photo4.jpg" alt="" />
+    </div>
+    -->
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       RIGHT COLUMN — name, subtitle, bio, facts
+       ══════════════════════════════════════════════ -->
+
+  <div class="profile-content">
+
+    <!-- Small label above the name — e.g. a city, a role, a single word -->
+    <p class="profile-kicker">Friend</p>
+
+    <h1 class="profile-name">[Friend's Name]</h1>
+
+    <!-- One-line summation — a GitHub bio, a running joke, a true thing -->
+    <p class="profile-subtitle">"A catchy line about who they are."</p>
+
+    <div class="profile-bio">
+      <p>Write a paragraph about your friend here. Who are they? How do you know them? What makes them distinctly themselves?</p>
+
+      <p>Add as many paragraphs as you like. Keep it personal — this is for your friends, after all.</p>
+    </div>
+
+    <!-- Optional quick-fact chips — delete this block if you don't want them -->
+    <div class="profile-facts">
+      <span class="profile-fact">Hometown: —</span>
+      <span class="profile-fact">Met: —</span>
+      <span class="profile-fact">Currently in: —</span>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p class="footer-logo">a blog to keep my friends posted</p>
+  <p>&copy; 2025 Wyatt King</p>
+</footer>
+
+</body>
+</html>
