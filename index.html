@@ -43,52 +43,56 @@
   <img src="imgs/PANA0995.JPG" alt="A scenic view" />
 </div>
 
-<div class="updates-cta">
-  <div class="updates-cta-card">
-    <div class="updates-cta-copy">
-      <p class="updates-cta-label">Emails + Comments</p>
-      <h2 >Website Updates</h2>
-      <p>First, every post has a comment section now! Create a <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">GitHub</a> account to participate. Second, click the button below to enter your email and I'll send a quick note whenever something new goes live.</p>
-    </div>
-    <div class="updates-cta-action">
-      <button id="showUpdatesForm" class="btn btn-primary">Join updates</button>
-      <form id="updatesForm" class="updates-form hidden" action="https://formspree.io/f/xpqeldvo" method="POST" onsubmit="handleUpdatesSubmit(event)">
-        <input id="updatesEmail" name="email" type="email" required placeholder="you@example.com" />
-        <input type="hidden" name="_subject" value="New subscriber — Field Notes" />
-        <button type="submit" class="btn btn-secondary">Subscribe</button>
-      </form>
-      <p id="updatesSuccess" class="updates-success hidden">✓ You're on the list!</p>
-    </div>
-  </div>
-</div>
-
 <div class="page">
-  <div class="post-list" id="postList">
+  <div class="post-list-container collapsed" id="postListContainer">
+    <div class="post-list" id="postList">
+
+            <a class="post-row" href="2026-06-15-vlog.html"
+       data-title="The blog is vlogs"
+       data-excerpt="In which I resort to subways and shoddy statistics"
+       data-date="June 10, 2026">
+      <div class="post-row-left">
+        <p class="post-kicker">Vlog</p>
+        <h2 class="post-row-title">The Blog is Vlogs</h2>
+        <p class="post-row-excerpt">Wyatt in the Woods.</p>
+      </div>
+      <div class="post-row-meta">
+        <span>June 15, 2026</span>
+      </div>
+      </a>
 
 
-    <a class="post-row" href="2026-06-14-lame columbia students.html"
+      <a class="post-row" href="2026-06-14-lame columbia students.html"
        data-title="Yet more evidence Columbia students are lame"
        data-excerpt="In which I resort to subways and shoddy statistics"
        data-date="June 10, 2026">
       <div class="post-row-left">
         <p class="post-kicker">Data! Data! Data!</p>
-        <h2 class="post-row-title">Yet more evidence Columbia students are lame</h2>
-        <p class="post-row-excerpt">In which I resort to subways and shoddy statistics</p>
+        <h2 class="post-row-title">Yet More Evidence Columbia Students Are Lame</h2>
+        <p class="post-row-excerpt">In which I resort to subways and shoddy statistics.</p>
       </div>
       <div class="post-row-meta">
         <span>June 14, 2026</span>
       </div>
-    </a>
-    
+      </a>
 
-        <a class="post-row" href="2026-06-10- camping.html"
+              <div class="updates-inline">
+      <button id="showUpdatesForm" class="btn btn-primary btn-small">Join email updates</button>
+      <form id="updatesForm" class="updates-form hidden" action="https://formspree.io/f/xpqeldvo" method="POST" onsubmit="handleUpdatesSubmit(event)">
+        <input id="updatesEmail" name="email" type="email" required placeholder="you@example.com" />
+        <button type="submit" class="btn btn-secondary btn-small">Subscribe</button>
+      </form>
+      <p id="updatesSuccess" class="updates-success hidden">✓ You're on the list!</p>
+    </div>
+
+      <a class="post-row" href="2026-06-10- camping.html"
        data-title="Camping"
        data-excerpt="Yes, Camping"
        data-date="June 10, 2026">
       <div class="post-row-left">
         <p class="post-kicker">Gossip</p>
         <h2 class="post-row-title">Camping</h2>
-        <p class="post-row-excerpt">Yes, camping</p>
+        <p class="post-row-excerpt">Yes, camping!</p>
       </div>
       <div class="post-row-meta">
         <span>June 10, 2026</span>
@@ -102,7 +106,7 @@
       <div class="post-row-left">
         <p class="post-kicker">Unnecessary Thoughts</p>
         <h2 class="post-row-title"> On the Crush Calculator </h2>
-        <p class="post-row-excerpt">And Where I think I've Gone Wrong</p>
+        <p class="post-row-excerpt">And where I think I've gone wrong.</p>
       </div>
       <div class="post-row-meta">
         <span>June 4, 2026</span>
@@ -115,7 +119,7 @@
        data-date="May 31, 2026">
       <div class="post-row-left">
         <p class="post-kicker">Gossip</p>
-        <h2 class="post-row-title">A weekend in New York</h2>
+        <h2 class="post-row-title">A Weekend in New York</h2>
         <p class="post-row-excerpt">I visited Lucia.</p>
       </div>
       <div class="post-row-meta">
@@ -123,6 +127,15 @@
       </div>
     </a>
 
+    </div>
+    <div class="post-list-footer" aria-hidden="true">
+      <div class="post-list-fade"></div>
+      <button id="showMorePosts" type="button" class="post-list-more" aria-label="View more posts">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+    </div>
   </div>
   <p class="no-results" id="noResults">No posts match your search.</p>
 </div>
@@ -176,7 +189,29 @@
       }
     });
     noResults.style.display = (visible === 0 && q) ? 'block' : 'none';
+    updatePostListFade();
   }
+
+  const postListContainer = document.getElementById('postListContainer');
+  const showMorePostsBtn = document.getElementById('showMorePosts');
+  let postListExpanded = false;
+  const visiblePostCount = 3;
+
+  function updatePostListFade() {
+    if (!postListContainer) return;
+    const visibleRows = Array.from(rows).filter(row => !row.classList.contains('hidden'));
+    const shouldCollapse = visibleRows.length > visiblePostCount && !postListExpanded;
+    postListContainer.classList.toggle('collapsed', shouldCollapse);
+  }
+
+  if (showMorePostsBtn) {
+    showMorePostsBtn.addEventListener('click', () => {
+      postListExpanded = true;
+      updatePostListFade();
+    });
+  }
+
+  updatePostListFade();
 
   const showUpdatesBtn = document.getElementById('showUpdatesForm');
   const updatesForm = document.getElementById('updatesForm');
@@ -186,7 +221,7 @@
     showUpdatesBtn.addEventListener('click', () => {
       updatesForm.classList.toggle('hidden');
       updatesSuccess.classList.add('hidden');
-      showUpdatesBtn.textContent = updatesForm.classList.contains('hidden') ? 'Join updates' : 'Hide form';
+      showUpdatesBtn.textContent = updatesForm.classList.contains('hidden') ? 'Join email updates' : 'Hide form';
       if (!updatesForm.classList.contains('hidden')) {
         document.getElementById('updatesEmail').focus();
       }
