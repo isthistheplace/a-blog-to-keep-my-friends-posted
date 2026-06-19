@@ -26,7 +26,7 @@
     <a class="masthead-logo" href="index.html">a blog to keep my friends posted</a>
     <div class="masthead-right">
       <div class="search-wrap">
-        <input class="search-input" id="searchInput" type="text" placeholder="Search posts…" autocomplete="off" />
+        <input class="search-input" id="searchInput" type="text" placeholder="Search posts, titles, dates, or kickers…" autocomplete="off" />
         <button class="search-clear" id="searchClear" aria-label="Clear search">&#x2715;</button>
         <button class="search-btn" id="searchBtn" aria-label="Search">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -41,6 +41,13 @@
 <!-- Hero image: same width as post list, natural aspect ratio -->
 <div class="hero">
   <img src="imgs/PANA0995.JPG" alt="A scenic view" />
+</div>
+
+<div class="kicker-filter">
+  <label class="kicker-filter-label" for="kickerSelect">Filter by kicker</label>
+  <select id="kickerSelect" class="kicker-filter-select" aria-label="Choose a kicker">
+    <option value="">All</option>
+  </select>
 </div>
 
 <div class="page">
@@ -173,29 +180,66 @@
     return text.replace(new RegExp(`(${esc})`, 'gi'), '<mark>$1</mark>');
   }
 
+  const kickerSelect = document.getElementById('kickerSelect');
+  const postListContainer = document.getElementById('postListContainer');
+  const showMorePostsBtn = document.getElementById('showMorePosts');
+  let selectedKicker = '';
+  const updatesInline = document.querySelector('.updates-inline');
+  let postListExpanded = false;
+  const visiblePostCount = 3;
+
+  function createKickerFilters() {
+    if (!kickerSelect) return;
+
+    const uniqueKickers = [...new Set(Array.from(rows)
+      .map(row => row.querySelector('.post-kicker')?.textContent.trim())
+      .filter(Boolean))];
+
+    uniqueKickers.forEach(kicker => {
+      const option = document.createElement('option');
+      option.value = kicker;
+      option.textContent = kicker;
+      kickerSelect.appendChild(option);
+    });
+
+    kickerSelect.addEventListener('change', () => selectKicker(kickerSelect.value));
+  }
+
+  function selectKicker(kicker) {
+    selectedKicker = kicker;
+    if (showMorePostsBtn) {
+      showMorePostsBtn.style.display = kicker ? 'none' : '';
+    }
+    if (updatesInline) {
+      updatesInline.style.display = kicker ? 'none' : '';
+    }
+    postListExpanded = Boolean(kicker);
+    filterPosts(input.value.trim());
+  }
+
   function filterPosts(query) {
     const q = query.toLowerCase();
     let visible = 0;
     rows.forEach(row => {
-      const matches = !q || [row.dataset.title, row.dataset.excerpt, row.dataset.date]
+      const kicker = row.querySelector('.post-kicker')?.textContent || '';
+      const matchesKicker = !selectedKicker || kicker === selectedKicker;
+      const matchesQuery = !q || [row.dataset.title, row.dataset.excerpt, row.dataset.date, kicker]
         .some(f => (f || '').toLowerCase().includes(q));
+      const matches = matchesKicker && matchesQuery;
       row.classList.toggle('hidden', !matches);
       if (matches) {
         visible++;
         row.querySelector('.post-row-title').innerHTML    = highlight(row.querySelector('.post-row-title').textContent, query);
         row.querySelector('.post-row-excerpt').innerHTML  = highlight(row.querySelector('.post-row-excerpt').textContent, query);
+        const kickerEl = row.querySelector('.post-kicker');
+        if (kickerEl) kickerEl.innerHTML = highlight(kickerEl.textContent, query);
         const dateEl = row.querySelector('.post-row-meta span');
         if (dateEl) dateEl.innerHTML = highlight(dateEl.textContent, query);
       }
     });
-    noResults.style.display = (visible === 0 && q) ? 'block' : 'none';
+    noResults.style.display = (visible === 0 && (q || selectedKicker)) ? 'block' : 'none';
     updatePostListFade();
   }
-
-  const postListContainer = document.getElementById('postListContainer');
-  const showMorePostsBtn = document.getElementById('showMorePosts');
-  let postListExpanded = false;
-  const visiblePostCount = 3;
 
   function updatePostListFade() {
     if (!postListContainer) return;
@@ -203,6 +247,9 @@
     const shouldCollapse = visibleRows.length > visiblePostCount && !postListExpanded;
     postListContainer.classList.toggle('collapsed', shouldCollapse);
   }
+
+  createKickerFilters();
+  selectKicker('');
 
   if (showMorePostsBtn) {
     showMorePostsBtn.addEventListener('click', () => {
