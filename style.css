@@ -217,7 +217,8 @@ body {
 }
 
 .post-list-container.collapsed {
-  max-height: calc(3 * 110px);
+  /* Show the updates CTA plus two posts (3 rows) comfortably */
+  max-height: calc(4 * 110px);
 }
 
 .post-list {
@@ -302,6 +303,12 @@ body {
 .post-row-meta { font-size: 11px; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; text-align: right; }
 .post-row-meta span { display: block; line-height: 1.7; }
 
+/* Post-like updates CTA (appears among posts) */
+.post-row-updates { cursor: pointer; }
+.post-row-updates + .updates-dropdown { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.post-row-updates + .updates-dropdown .updates-form { padding-top: 6px; }
+.post-row-updates + .updates-dropdown .updates-form input { min-width: 160px; max-width: 360px; }
+
 .no-results {
   display: none;
   padding: 48px 0;
@@ -323,6 +330,44 @@ body {
   height: auto;
   border-radius: var(--radius);
   border: none;
+}
+
+/* ============================================================
+   HERO CAROUSEL
+   ============================================================ */
+.hero-carousel { position: relative; overflow: hidden; max-width: var(--max-width); margin: 0 auto; }
+.hero-carousel .carousel-track { display: flex; transition: transform 420ms cubic-bezier(.2,.8,.2,1); will-change: transform; }
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(28, 27, 25, 0.16);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.hero-carousel:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 42px 100px rgba(28, 27, 25, 0.22);
+}
+.hero-carousel .carousel-track { display: flex; transition: transform 420ms cubic-bezier(.2,.8,.2,1); will-change: transform; }
+.hero-carousel .carousel-slide { min-width: 100%; flex-shrink: 0; display: block; }
+.hero-carousel img { width: 100%; height: auto; display: block; object-fit: cover; border: 1px solid rgba(255,255,255,0.9); }
+.carousel-prev, .carousel-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.9); border: 1px solid var(--rule); color: var(--ink);
+  width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center;
+  cursor: pointer; z-index: 5;
+}
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+.carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index:6; }
+.carousel-dots button { width:10px; height:10px; border-radius:999px; border:0; background: rgba(255,255,255,0.6); cursor:pointer; }
+.carousel-dots button[aria-selected="true"] { background: var(--accent); }
+
+@media (max-width: 720px) {
+  .carousel-prev, .carousel-next { width:36px; height:36px; }
 }
 .post-photo figcaption {
   margin-top: 9px;
@@ -842,22 +887,68 @@ mark {
    PROFILE PAGE  (profile_template.html and individual profiles)
    ============================================================ */
 .profile-wrap {
-  max-width: var(--max-width);
+  max-width: 760px;
   margin: 48px auto 80px;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: minmax(240px, 300px) 1fr;
   gap: 48px;
   align-items: start;
 }
 
-.profile-media { position: sticky; top: 80px; }
+.profile-media {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+}
+
+.profile-photo-stack {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+}
+
+.profile-polaroid {
+  position: relative;
+  width: 100%;
+  border-radius: 0px;
+  box-shadow: 0 24px 46px rgba(28, 27, 25, 0.16);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+.profile-polaroid img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0px;
+  display: block;
+}
+.profile-polaroid--back {
+  transform: translate(-6px, 4px) rotate(-10deg);
+  border-radius: 0px;
+  z-index: 1;
+}
+.profile-polaroid--middle {
+  margin-top: -66px;
+  transform: translate(6px, -5px) rotate(10deg);
+  border-radius: 0px;
+  z-index: 2;
+}
+.profile-polaroid--front {
+  margin-top: -66px;
+  border-radius: 0px;
+  z-index: 3;
+}
+.profile-polaroid--front:hover,
+.profile-polaroid--front:focus-within {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.32);
+}
 
 .profile-photo {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: 0px;
   display: block;
 }
 
@@ -870,7 +961,7 @@ mark {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 0;
   display: block;
 }
 .profile-collage img:first-child {
@@ -942,7 +1033,7 @@ mark {
     gap: 28px;
   }
   .profile-media { position: static; }
-  .profile-photo { aspect-ratio: 4 / 3; }
+  .profile-photo { aspect-ratio: 3 / 2; }
 }
 
 

@@ -43,21 +43,30 @@
   <img src="imgs/PANA0995.JPG" alt="A scenic view" />
 </div>
 
-<div class="kicker-filter">
-  <label class="kicker-filter-label" for="kickerSelect">Filter by kicker</label>
-  <select id="kickerSelect" class="kicker-filter-select" aria-label="Choose a kicker">
-    <option value="">All</option>
-  </select>
-</div>
-
 <div class="page">
   <div class="post-list-container collapsed" id="postListContainer">
     <div class="post-list" id="postList">
 
+                    <div class="post-row post-row-updates" role="button" tabindex="0" data-title="Join email updates" data-excerpt="Get me in your inbox.">
+                      <div class="post-row-left">
+                        <p class="post-kicker">Website updates</p>
+                        <h2 class="post-row-title">Join email updates</h2>
+                        <p class="post-row-excerpt">Get me in your inbox.</p>
+                      </div>
+                      <div class="post-row-meta"><span>&nbsp;</span></div>
+                    </div>
+                    <div class="updates-dropdown hidden">
+                      <form id="updatesForm" class="updates-form" action="https://formspree.io/f/xpqeldvo" method="POST" onsubmit="handleUpdatesSubmit(event)">
+                        <input id="updatesEmail" name="email" type="email" required placeholder="you@example.com" />
+                        <button type="submit" class="btn btn-secondary btn-small">Subscribe</button>
+                      </form>
+                      <p id="updatesSuccess" class="updates-success hidden">✓ You're on the list!</p>
+                    </div>
+
             <a class="post-row" href="2026-06-22-a-week-lucia-part-iii-no-job-other-updates.html"
        data-title="A Week: Lucia Part III, No Job, Other Updates"
        data-excerpt="Friends, excuse my delay in updating the blog."
-       data-date="Jun 22, 2026">
+       data-date="Jun 20, 2026">
       <div class="post-row-left">
         <p class="post-kicker">Gossip</p>
         <h2 class="post-row-title">A Week: Lucia Part III, No Job, Other Updates</h2>
@@ -96,15 +105,6 @@
         <span>June 14, 2026</span>
       </div>
       </a>
-
-              <div class="updates-inline">
-      <button id="showUpdatesForm" class="btn btn-primary btn-small">Join email updates</button>
-      <form id="updatesForm" class="updates-form hidden" action="https://formspree.io/f/xpqeldvo" method="POST" onsubmit="handleUpdatesSubmit(event)">
-        <input id="updatesEmail" name="email" type="email" required placeholder="you@example.com" />
-        <button type="submit" class="btn btn-secondary btn-small">Subscribe</button>
-      </form>
-      <p id="updatesSuccess" class="updates-success hidden">✓ You're on the list!</p>
-    </div>
 
       <a class="post-row" href="2026-06-10- camping.html"
        data-title="Camping"
@@ -198,8 +198,9 @@
   const postListContainer = document.getElementById('postListContainer');
   const showMorePostsBtn = document.getElementById('showMorePosts');
   let selectedKicker = '';
-  const updatesInline = document.querySelector('.updates-inline');
+  const updatesInline = document.querySelector('.post-row-updates');
   let postListExpanded = false;
+  // Number of post-rows visible when collapsed (includes the updates CTA row)
   const visiblePostCount = 3;
 
   function createKickerFilters() {
@@ -274,6 +275,25 @@
 
   updatePostListFade();
 
+  // Toggle inline updates dropdown when the post-like CTA is clicked
+  const updatesRows = document.querySelectorAll('.post-row-updates');
+  updatesRows.forEach(row => {
+    const next = row.nextElementSibling;
+    const dropdown = next && next.classList && next.classList.contains('updates-dropdown') ? next : null;
+    if (!dropdown) return;
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('form')) return;
+      dropdown.classList.toggle('hidden');
+      if (!dropdown.classList.contains('hidden')) {
+        const input = dropdown.querySelector('input[name="email"]');
+        if (input) input.focus();
+      }
+    });
+    row.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
+    });
+  });
+
   const showUpdatesBtn = document.getElementById('showUpdatesForm');
   const updatesForm = document.getElementById('updatesForm');
   const updatesSuccess = document.getElementById('updatesSuccess');
@@ -297,12 +317,12 @@
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
     }).then(r => {
-      if (r.ok) {
-        form.classList.add('hidden');
-        updatesSuccess.classList.remove('hidden');
-        form.reset();
-        showUpdatesBtn.textContent = 'Join updates';
-      }
+        if (r.ok) {
+          form.classList.add('hidden');
+          updatesSuccess.classList.remove('hidden');
+          form.reset();
+          if (showUpdatesBtn) showUpdatesBtn.textContent = 'Join updates';
+        }
     });
   }
 </script>
